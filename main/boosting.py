@@ -80,7 +80,7 @@ date = str(datetime.now(JST))
 timestamp = re.sub(r'-|\s|:|(\.\d+)|(\+\d+\:\d+)', '', date)
 
 with open('../log/result.log','a') as f:
-    f.write(timestamp + ': ' + str(score))
+    f.write(timestamp + ': ' + str(score) + '\n')
 
 # ===== test 結果出力
 test_data = pd.read_csv('../csv/fixed_test.csv')

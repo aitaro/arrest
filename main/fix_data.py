@@ -81,12 +81,19 @@ def fix(data,type):
 
     fixed_train_data.stop_time = fixed_train_data.apply(lambda x: int(x.stop_time[0:2]) * 60 + int(x.stop_time[3:5]), axis=1)
 
+    fixed_train_data['date'] = fixed_train_data.apply(lambda x: datetime.datetime.strptime(x.stop_date, '%Y-%m-%d'), axis=1)
+    fixed_train_data['weekday'] = fixed_train_data.apply(lambda x: datetime.date(x.date.year, x.date.month, x.date.day).weekday(), axis=1)
+    fixed_train_data.loc[fixed_train_data['weekday'] > 4, 'weekend'] = 1
+
+
     fixed_train_data = fixed_train_data.fillna(0)
 
     fixed_train_data = fixed_train_data.drop("stop_date", axis=1)
     fixed_train_data = fixed_train_data.drop("driver_race", axis=1)
     fixed_train_data = fixed_train_data.drop("violation", axis=1)
     fixed_train_data = fixed_train_data.drop("search_type", axis=1)
+    fixed_train_data = fixed_train_data.drop("date", axis=1)
+    fixed_train_data = fixed_train_data.drop("weekday", axis=1)
 
     return fixed_train_data
 
