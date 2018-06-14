@@ -2,13 +2,9 @@
 import pandas as pd
 import numpy as np
 from sklearn.ensemble import GradientBoostingClassifier  #GBM algorithm
-from sklearn import cross_validation, metrics   #Additional scklearn functions
+from sklearn import metrics   #Additional scklearn functions
 from sklearn.grid_search import GridSearchCV   #Perforing grid search
-# import matplotlib
-# # matplotlib.use('Agg')
-# # matplotlib.use("tkagg")
-# import matplotlib.pylab as plt
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, cross_val_score
 import math
 from datetime import datetime, timedelta, timezone
 import re
@@ -43,7 +39,7 @@ def modelfit(alg, dtrain, predictors, performCV=True, printFeatureImportance=Tru
 
     #Perform cross-validation:
     if performCV:
-        cv_score = cross_validation.cross_val_score(alg, dtrain[predictors], dtrain[target], cv=cv_folds, scoring='roc_auc')
+        cv_score = cross_val_score(alg, dtrain[predictors], dtrain[target], cv=cv_folds, scoring='roc_auc')
 
     #Print model report:
     print ("Model Report")
