@@ -21,3 +21,11 @@
 2018-06-15 00:45:05,563:38:INFO:fitting finished
 2018-06-15 00:45:43,358:36:INFO:fitting ....
 2018-06-15 00:45:51,282:38:INFO:fitting finished
+2018-06-15 00:51:45,593:95:INFO:finish fixing train data
+2018-06-15 00:51:48,943:97:INFO:finish fixing test data
+2018-06-15 00:51:50,560:32:INFO:fitting ....
+2018-06-15 00:51:58,723:34:INFO:fitting finished
+2018-06-15 00:54:54,301:95:INFO:finish fixing train data
+2018-06-15 00:54:57,766:97:INFO:finish fixing test data
+2018-06-15 00:54:59,455:32:INFO:fitting ....
+2018-06-15 00:55:07,387:34:INFO:fitting finished

@@ -74,9 +74,10 @@ def fix(data,type):
     fixed_train_data.loc[fixed_train_data['stop_duration'] == '16-30 min', 'stop_duration'] = 2
     fixed_train_data.loc[fixed_train_data['stop_duration'] == '30+ min', 'stop_duration'] = 3
 
-
-    fixed_train_data = fixed_train_data.fillna({'stop_time': '%02d' % random.randrange(24) + ':' + '%02d' % random.randrange(60)})
-    # fixed_train_data = fixed_train_data.fillna({'stop_time': '12:00'})
+    if type == 'train':
+        fixed_train_data = fixed_train_data.dropna(subset=['stop_time'])
+    else:
+        fixed_train_data = fixed_train_data.fillna({'stop_time': '%02d' % random.randrange(24) + ':' + '%02d' % random.randrange(60)})
 
     fixed_train_data.stop_time = fixed_train_data.apply(lambda x: int(x.stop_time[0:2]) * 60 + int(x.stop_time[3:5]), axis=1)
 
