@@ -5,31 +5,46 @@ from pandas import DataFrame
 import re
 import datetime
 import random
+from common import logger
 
 train_data= pd.read_csv('../csv/train.csv', low_memory=False)
 test_data = pd.read_csv('../csv/test.csv')
 gps_data = pd.read_csv('../csv/country_location.csv')
 
-def fix(data):
+def fix(data,type):
 
     fixed_train_data = pd.DataFrame()
     fixed_train_data['driver_age'] = data.driver_age
     fixed_train_data['county_fips'] = data.county_fips
-
-    fixed_train_data = pd.merge(data, gps_data, on='county_fips').loc[:,['stop_time',
-                                                                               'stop_date',
-                                                                               'lat',
-                                                                               'lng',
-                                                                               'driver_gender',
-                                                                               'driver_age',
-                                                                               'driver_race',
-                                                                               'violation',
-                                                                               'search_conducted',
-                                                                               'search_type',
-                                                                               'contraband_found',
-                                                                               'stop_duration',
-                                                                               'is_arrested'
-                                                                              ]]
+    if type == 'train':
+        fixed_train_data = pd.merge(data, gps_data, on='county_fips').loc[:,['stop_time',
+                                                                                   'stop_date',
+                                                                                   'lat',
+                                                                                   'lng',
+                                                                                   'driver_gender',
+                                                                                   'driver_age',
+                                                                                   'driver_race',
+                                                                                   'violation',
+                                                                                   'search_conducted',
+                                                                                   'search_type',
+                                                                                   'contraband_found',
+                                                                                   'stop_duration',
+                                                                                   'is_arrested'
+                                                                                  ]]
+    else:
+        fixed_train_data = pd.merge(data, gps_data, on='county_fips').loc[:,['stop_time',
+                                                                                   'stop_date',
+                                                                                   'lat',
+                                                                                   'lng',
+                                                                                   'driver_gender',
+                                                                                   'driver_age',
+                                                                                   'driver_race',
+                                                                                   'violation',
+                                                                                   'search_conducted',
+                                                                                   'search_type',
+                                                                                   'contraband_found',
+                                                                                   'stop_duration'
+                                                                                  ]]
 
     fixed_train_data.loc[fixed_train_data['driver_gender'] == 'M', 'driver_gender'] = 1
     fixed_train_data.loc[fixed_train_data['driver_gender'] == 'F', 'driver_gender'] = 0
@@ -73,8 +88,8 @@ def fix(data):
 
     return fixed_train_data
 
-fixed_train_data = fix(train_data)
+fixed_train_data = fix(train_data, 'train')
 fixed_train_data.to_csv("../csv/fixed_train.csv")
-print('finish fixing train data')
-fix(test_data).to_csv("../csv/fixed_test.csv")
-print('finish fixing test data')
+logger.info('finish fixing train data')
+fix(test_data, 'test').to_csv("../csv/fixed_test.csv")
+logger.info('finish fixing test data')
