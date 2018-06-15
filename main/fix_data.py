@@ -7,6 +7,7 @@ import datetime
 import random
 from common import logger
 
+logger.info('starting ...')
 train_data= pd.read_csv('../csv/train.csv', low_memory=False)
 test_data = pd.read_csv('../csv/test.csv')
 gps_data = pd.read_csv('../csv/country_location.csv')
@@ -17,7 +18,7 @@ def fix(data,type):
     fixed_train_data['driver_age'] = data.driver_age
     fixed_train_data['county_fips'] = data.county_fips
     if type == 'train':
-        fixed_train_data = pd.merge(data, gps_data, on='county_fips').loc[:,['stop_time',
+        fixed_train_data = pd.merge(data, gps_data, on='county_fips', how='left').loc[:,['stop_time',
                                                                                    'stop_date',
                                                                                    'lat',
                                                                                    'lng',
@@ -32,7 +33,7 @@ def fix(data,type):
                                                                                    'is_arrested'
                                                                                   ]]
     else:
-        fixed_train_data = pd.merge(data, gps_data, on='county_fips').loc[:,['stop_time',
+        fixed_train_data = pd.merge(data, gps_data, on='county_fips', how='left').loc[:,['stop_time',
                                                                                    'stop_date',
                                                                                    'lat',
                                                                                    'lng',

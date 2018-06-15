@@ -33,3 +33,14 @@
 2018-06-15 01:22:10,072:104:INFO:finish fixing test data
 2018-06-15 01:22:11,625:32:INFO:fitting ....
 2018-06-15 01:22:20,086:34:INFO:fitting finished
+2018-06-15 01:46:04,672:32:INFO:fitting ....
+2018-06-15 01:46:12,815:34:INFO:fitting finished
+2018-06-15 23:49:19,064:61:DEBUG:drop unnecessary train data
+2018-06-15 23:49:19,069:66:DEBUG:p1
+2018-06-15 23:51:22,289:61:DEBUG:drop unnecessary train data
+2018-06-15 23:51:22,295:66:DEBUG:p1
+2018-06-15 23:51:22,330:92:DEBUG:p2
+2018-06-16 00:02:23,286:102:INFO:finish fixing train data
+2018-06-16 00:02:42,507:104:INFO:finish fixing test data
+2018-06-16 00:02:48,424:32:INFO:fitting ....
+2018-06-16 00:03:02,665:34:INFO:fitting finished
