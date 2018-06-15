@@ -107,6 +107,7 @@ def fix(data,type):
     fixed_data = fixed_data.drop("search_type", axis=1)
     fixed_data = fixed_data.drop("date", axis=1)
     fixed_data = fixed_data.drop("weekday", axis=1)
+    # fixed_data = fixed_data.drop("officer_id", axis=1)
 
     return fixed_data
 
