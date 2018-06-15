@@ -30,6 +30,7 @@ def fix(data,type):
                                                                                    'search_type',
                                                                                    'contraband_found',
                                                                                    'stop_duration',
+                                                                                   'officer_id',
                                                                                    'is_arrested'
                                                                                   ]]
     else:
@@ -44,6 +45,7 @@ def fix(data,type):
                                                                                    'search_conducted',
                                                                                    'search_type',
                                                                                    'contraband_found',
+                                                                                   'officer_id',
                                                                                    'stop_duration'
                                                                                   ]]
 
